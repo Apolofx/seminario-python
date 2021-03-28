@@ -103,12 +103,19 @@ nombres_2 = """'Agustin',
  'Tomás',
  'Ulises',
  'Yanina'"""
-lista_nombres_1 = nombres_1.splitlines()
-lista_nombres_2 = nombres_2.splitlines()
-lista_nombres_1_limpio = [nombre.replace("\'","").replace(',','').replace(" ", "").lower() for nombre in lista_nombres_1]
-lista_nombres_2_limpio = [nombre.replace("\'","").replace(',','').replace(" ", "").lower() for nombre in lista_nombres_2]
+lista_nombres_1 = [nombre.strip(" ,\'").lower() for nombre in nombres_1.splitlines()]
+lista_nombres_2 = [nombre.strip(" ,\'").lower() for nombre in nombres_2.splitlines()]
+lista_nombres_en_ambos = [nombre for nombre in lista_nombres_1 if nombre in lista_nombres_2]
 
-lista_nombres_en_ambos = [nombre for nombre in lista_nombres_1_limpio if nombre in lista_nombres_2_limpio]
+#Elimino los duplicados
+lista_nombres_sin_repetir = list(dict.fromkeys(lista_nombres_en_ambos))
+
+#Otra forma de eliminar los duplicados
+for nombre in lista_nombres_en_ambos:
+    if lista_nombres_en_ambos.count(nombre) > 1:
+        lista_nombres_en_ambos.remove(nombre)
+
+print(lista_nombres_en_ambos)
 
 eval1 = """81,
  60,
@@ -206,15 +213,16 @@ eval2 = """30,
  57,
  10"""
 
-lista_notas_1 = eval1.splitlines()
-lista_notas_2 = eval2.splitlines()
-notas_1 = [int(nota.strip(" ").strip(",")) for nota in lista_notas_1]
-notas_2 = [int(nota.strip(" ").strip(",")) for nota in lista_notas_2]
+lista_notas_1 = [int(nota.strip(" ").strip(",")) for nota in eval1.splitlines()]
+lista_notas_2 = [int(nota.strip(" ").strip(",")) for nota in eval2.splitlines()]
+datos_por_alumno = list(zip(lista_nombres_1, lista_notas_1, lista_notas_2))
 
-print(notas_1)
-print(notas_2)
+total = []
+for dato in datos_por_alumno:
+    total.append(dato[1] + dato[2])
 
-notas_por_alumno = list(zip(lista_nombres_1_limpio, notas_1, notas_2))
-
-
+print(f"{'':>4}{'Nombre':<10}{'Eval1':^10}{'Eval2':^10}{'Total':^10}")
+for dato in datos_por_alumno:
+    i = datos_por_alumno.index(dato)
+    print(f"{i:>3}{' '+ dato[0]:<10}{dato[1]:^10}{dato[2]:^10}{total[i]:>7}")
 
