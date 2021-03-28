@@ -110,11 +110,6 @@ lista_nombres_en_ambos = [nombre for nombre in lista_nombres_1 if nombre in list
 #Elimino los duplicados
 lista_nombres_sin_repetir = list(dict.fromkeys(lista_nombres_en_ambos))
 
-#Otra forma de eliminar los duplicados
-for nombre in lista_nombres_en_ambos:
-    if lista_nombres_en_ambos.count(nombre) > 1:
-        lista_nombres_en_ambos.remove(nombre)
-
 print(lista_nombres_en_ambos)
 
 eval1 = """81,
