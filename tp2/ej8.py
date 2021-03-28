@@ -208,8 +208,8 @@ eval2 = """30,
  57,
  10"""
 
-lista_notas_1 = [int(nota.strip(" ").strip(",")) for nota in eval1.splitlines()]
-lista_notas_2 = [int(nota.strip(" ").strip(",")) for nota in eval2.splitlines()]
+lista_notas_1 = [int(nota.strip(" ,")) for nota in eval1.splitlines()]
+lista_notas_2 = [int(nota.strip(" ,")) for nota in eval2.splitlines()]
 datos_por_alumno = list(zip(lista_nombres_1, lista_notas_1, lista_notas_2))
 
 total = []
