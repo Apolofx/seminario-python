@@ -15,8 +15,10 @@ for dicc in diccionarios:
     diccionario.update(dicc)
 print(diccionario)
 
-letra = input("ingrese letra: ").upper()
-if (letra in string.ascii_letters):
-    print(f"El valor de la letra {letra} es {diccionario[letra]}")
-else:
-    print("eso no es una letra")
+palabra = input("ingrese palabra: ").upper()
+puntaje = 0
+for letra in palabra:
+    if (letra in string.ascii_letters):
+        puntaje += diccionario[letra]
+
+print(f'Puntaje total: {puntaje}')
